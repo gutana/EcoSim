@@ -1,3 +1,3 @@
 # EcoSim
 
-a naive attempt at simulating an economic system
+an attempt at simulating an economic system
