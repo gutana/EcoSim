@@ -1,0 +1,66 @@
+Market :
+    commodities         // vector of available commodities in market (type: commodity)
+    commodity requests  // vector of requests to buy commodities (type: int)
+        we want to keep track of market GDP, other smart sounding eco terms, 
+        and maybe record historical data to illustrate how implemented rules affected the economy
+
+Commodity :
+    key ? maybe
+    producer
+    price 
+    supply
+
+Entity : 
+    
+    ** new thinking ** each cycle, a new price can be generated to be spend on a commodity 
+        (ie: one cycle, an entity might be interested in purchasing 1 very expensive commodity, 
+        whereas another cycle they might be interested in purchasing multiple cheaper commodities) 
+        this can emulate a fluctation in interests when purchasing commodities each cycle
+        this can also help take on the load of commodity generation
+         - instead of pushing a request for commodity or service into the market, a generic request is pushed as a price and when the sale is
+            handled,  a search is then made comparing the price to spend on a commodity versus the prices of commodities in the market. the commodity
+            with the closest cost to the 'asking price', and the sale is handled
+         - this was thought of because the idea of keeping track of multiple commodities and services to be generated and dealth with is daunting and
+            unnecessary. we are only interested in an abstraction of this, rather than the sales of individual commodities or services
+            ie: how much money is being spent and how much money is being made through sales
+        ** we may also want to generate a requested amount (randomized) and calculate how many we can buy this cycle with what we have
+            ie: savings = 200; commodity price = 75; requested amount = 3; unattainable, will only purchase two and will be dealt with in buy()
+            OR  savings = 300; commodity price = 23; requested amount = 4; attainable, amount and spending will be sent to buy()
+
+
+    entity type = consumer : producer : government
+
+    if consumer :
+        if entity wants to buy (we need to somehow handle decisions based on savings and interest in buying)
+            available funds = get how much money is available to purchase (optional branch can be made for productive purchase vs non productive)
+            limit = available funds / commodity's price
+            buy(price to spend, limit)
+
+    else if producer :
+        if entity has goods to sell (somehow determine supply and ? maybe demand)
+            limit = supply
+            sell(commodity, limit)
+
+    else if government :
+        certain government investments will be involved here
+        as well as government purchasing/borrowing
+
+    
+buy(price to spend, limit) :
+    commodity = search market for the commodity with the closest price to the price to spend
+    ideal quantity = determing purchase quant(commodity)
+    quant to buy = min(ideal, limit)
+
+    handle sale(consumer, commodity, quant to buy)
+
+sell(commodity, limit) :
+    push a commodity with the supply
+
+determine purchase quant(commodity) :
+
+
+determine sell quant(commodity) :
+
+
+    
+
